@@ -6,9 +6,11 @@ public class SharkRandomMovement : MonoBehaviour
     public float targetChangeInterval = 2f;
 
     // Aquarium bounds
-    private float minX = 0f, maxX = 70f;
-    private float minZ = 0f, maxZ = 50f;
-    private float yLevel = 1f; // Keeps the shark above the floor; adjust as needed
+    private float minX = -43f; // Updated to go from -43
+    private float maxX = 43f;   // to 43
+    private float minZ = 0f;
+    private float maxZ = 50f;
+    private float yLevel = 2f; // keep Y>=2
 
     private Vector3 targetPosition;
 
@@ -30,8 +32,9 @@ public class SharkRandomMovement : MonoBehaviour
 
     void SetNewTarget()
     {
-        float x = Random.Range(minX, maxX);
+        float x = Random.Range(minX, maxX); // Full range on X axis
         float z = Random.Range(minZ, maxZ);
-        targetPosition = new Vector3(x, yLevel, z);
+        float y = yLevel; // Keep Y fixed at 2, or you can add some oscillation if preferred
+        targetPosition = new Vector3(x, y, z);
     }
 }
